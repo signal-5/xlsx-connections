@@ -19,9 +19,10 @@ while($nextPage<92 and $totalResults>$nextPage) {
   # print "$nextPage, $totalResults, @lines\n";
 
   foreach $URL (@lines) {
-    $result=`wget -qO- $URL | bsdtar -tf- | grep connections && echo $URL`;
+    # ToDo: Security! ;) Check URL.
+    $result=`wget -qO- "$URL" | bsdtar -tf- | grep connections && echo "$URL"`;
     # Replace for debugging:
-    # $result=`wget -qO- $URL | bsdtar -tf- | grep connections ; echo $URL`;
+    # $result=`wget -qO- "$URL" | bsdtar -tf- | grep connections ; echo "$URL"`;
     print $result;
   }
 
